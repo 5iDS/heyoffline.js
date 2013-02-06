@@ -21,7 +21,12 @@
     if (useCapture == null) {
       useCapture = false;
     }
-    return element.addEventListener(event, fn, useCapture);
+  
+	if (element.addEventListener){
+		return element.addEventListener(event, fn, useCapture);
+	} else if (element.attachEvent){
+		return element.attachEvent(event, fn, useCapture);
+	}
   };
 
   setStyles = function(element, styles) {
